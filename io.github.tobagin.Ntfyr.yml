@@ -5,6 +5,7 @@ sdk: org.gnome.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
 command: ntfyr
+
 finish-args:
   - --share=ipc
   - --share=network
@@ -12,10 +13,23 @@ finish-args:
   - --socket=wayland
   - --device=dri
   - --talk-name=org.kde.StatusNotifierWatcher
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /man
+  - /share/doc
+  - /share/gtk-doc
+  - /share/man
+  - /share/pkgconfig
+  - '*.la'
+  - '*.a'
+
 build-options:
   append-path: /usr/lib/sdk/rust-stable/bin
   env:
     CARGO_REGISTRIES_CRATES_IO_PROTOCOL: sparse
+
 modules:
   - name: capnproto
     buildsystem: autotools
