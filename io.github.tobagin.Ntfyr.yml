@@ -5,31 +5,23 @@ sdk: org.gnome.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
 command: ntfyr
-
 finish-args:
   - --share=ipc
   - --share=network
   - --socket=fallback-x11
   - --socket=wayland
   - --device=dri
+  - --own-name=io.github.tobagin.Ntfyr
   - --talk-name=org.kde.StatusNotifierWatcher
-
-cleanup:
-  - /include
-  - /lib/pkgconfig
-  - /man
-  - /share/doc
-  - /share/gtk-doc
-  - /share/man
-  - /share/pkgconfig
-  - '*.la'
-  - '*.a'
-
 build-options:
   append-path: /usr/lib/sdk/rust-stable/bin
+  build-args:
+    - --share=network
   env:
     CARGO_REGISTRIES_CRATES_IO_PROTOCOL: sparse
-
+  test-args:
+    - --socket=x11
+    - --share=network
 modules:
   - name: capnproto
     buildsystem: autotools
@@ -42,6 +34,6 @@ modules:
     sources:
       - type: git
         url: https://github.com/tobagin/Ntfyr
-        tag: v0.1.2
-        commit: 51bb456446c16694c786b573bcbd19b97ec3e9dc
+        tag: v0.1.3
+        commit: c149f7e4948cfd094e731055d2d4a504c482a435
       - cargo-sources.json
