@@ -38,5 +38,6 @@ modules:
     sources:
       - type: git
         url: https://github.com/tobagin/Notify
-        tag: v0.3.0
+        tag: v0.4.1
+        commit: 174b6761745b8c08368928bdae5a50f0de01afd5
       - cargo-sources.json
