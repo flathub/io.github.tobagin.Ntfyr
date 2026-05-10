@@ -17,13 +17,22 @@ build-options:
   append-path: /usr/lib/sdk/rust-stable/bin
   env:
     CARGO_REGISTRIES_CRATES_IO_PROTOCOL: sparse
-
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /man
+  - /share/doc
+  - /share/gtk-doc
+  - /share/man
+  - /share/pkgconfig
+  - '*.la'
+  - '*.a'
 modules:
   - name: ntfyr
     buildsystem: meson
     sources:
       - type: git
         url: https://github.com/tobagin/Notify
-        tag: v0.5.3
-        commit: 73b587844080ffbe2678ab474489e1f1d6779084
+        tag: v0.5.4
+        commit: f06e6808131e2caf599e1774d7784b8d2ebfb5ca
       - cargo-sources.json
